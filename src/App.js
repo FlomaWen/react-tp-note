@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import HomePage from "./pages/HomePage";
+import CocktailsListPage from "./pages/CocktailsListPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import CocktailDetailPage from "./pages/CocktailDetailPage";
+import CategoriesListPage from "./pages/CategoriesListPage";
+import CocktailsFilteredByCategoriesPage from "./pages/CocktailsFilteredByCategoriesPage";
+import CocktailsFilteredByIngredientsPage from "./pages/CocktailsFilteredByIngredientsPage";
+import GlassesListPage from "./pages/GlassesListPage";
+import SearchResultPage from "./pages/SearchResultsPage";
+import CocktailsFilteredByGlassesPage from "./pages/CocktailsFilteredByGlassesPage";
+import IngredientsListPage from "./pages/IngredientsListPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/Cocktails" element={<CocktailsListPage />} />
+        <Route path="/Cocktails/Detail/:id" element={<CocktailDetailPage />} />
+        <Route path="/Categories" element={<CategoriesListPage />} />
+        <Route
+          path="/Cocktails/FilteredCategories/:category"
+          element={<CocktailsFilteredByCategoriesPage />}
+        />
+        <Route path="/Glasses" element={<GlassesListPage />} />
+        <Route path="/Ingredients" element={<IngredientsListPage />} />
+        <Route
+          path="/Cocktails/FilteredIngredients/:ingredient"
+          element={<CocktailsFilteredByIngredientsPage />}
+        />
+        <Route
+          path="/Cocktails/FilteredGlasses/:glass"
+          element={<CocktailsFilteredByGlassesPage />}
+        />
+        <Route path="/SearchResults/:research" element={<SearchResultPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
